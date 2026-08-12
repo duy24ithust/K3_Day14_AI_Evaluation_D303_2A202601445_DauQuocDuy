@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Evaluation & Benchmarking Pipeline — Dashboard</title>
+  <title>Dashboard Đánh Giá & Benchmark Hệ Thống AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -373,7 +373,7 @@
       background: var(--sb-ceramic);
     }
 
-    /* Floating Frap Action Button */
+    /* Floating Action Button */
     .frap-btn {
       position: fixed;
       bottom: 24px;
@@ -389,8 +389,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 100;
     }
@@ -490,49 +491,49 @@
   <!-- Header Bar -->
   <header class="sb-header">
     <div class="brand-title-group">
-      <h1>AI Evaluation & Benchmarking Dashboard</h1>
-      <p>System: Northstar Student Services RAG | Corpus: 10 Documents | Golden Dataset: 20 Test Cases</p>
+      <h1>Dashboard Đánh Giá & Benchmark Hệ Thống AI</h1>
+      <p>Hệ thống: Northstar Student Services RAG | Thư viện: 10 Tài liệu | Bộ đề thi: 20 Câu hỏi</p>
     </div>
     <div class="gold-rewards-badge">
-      Pass Rate: 30.0% | 42/42 PASSED
+      Tỷ lệ Đạt: 30.0% | 42/42 Tests PASSED
     </div>
   </header>
 
   <div class="container">
     
     <!-- Title Area -->
-    <h2 class="editorial-title">Evaluation Benchmark Summary</h2>
-    <p class="editorial-subtitle">Quantitative assessment across 5 core RAGAS-style metrics on Northstar Student Services corpus.</p>
+    <h2 class="editorial-title">Tổng Quan Đánh Giá Benchmark</h2>
+    <p class="editorial-subtitle">Đánh giá định lượng trên 5 chỉ số cốt lõi RAGAS đối với cơ sở dữ liệu Northstar Student Services.</p>
 
     <!-- Top Metrics Overview Grid -->
     <div class="metric-grid">
       <div class="metric-card good">
-        <div class="metric-label">Context Recall</div>
+        <div class="metric-label">Context Recall (Độ bao phủ)</div>
         <div class="metric-value" style="color: var(--sb-green-accent);">0.820</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 82%; background: var(--sb-green-accent);"></div></div>
       </div>
       <div class="metric-card good">
-        <div class="metric-label">Context Precision</div>
+        <div class="metric-label">Context Precision (Chính xác vị trí)</div>
         <div class="metric-value" style="color: var(--sb-green-accent);">0.896</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 89.6%; background: var(--sb-green-accent);"></div></div>
       </div>
       <div class="metric-card work">
-        <div class="metric-label">Faithfulness</div>
+        <div class="metric-label">Faithfulness (Độ trung thực)</div>
         <div class="metric-value" style="color: var(--sb-gold);">0.473</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 47.3%; background: var(--sb-gold);"></div></div>
       </div>
       <div class="metric-card work">
-        <div class="metric-label">Answer Relevance</div>
+        <div class="metric-label">Answer Relevance (Đúng trọng tâm)</div>
         <div class="metric-value" style="color: var(--sb-gold);">0.467</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 46.7%; background: var(--sb-gold);"></div></div>
       </div>
       <div class="metric-card good">
-        <div class="metric-label">Completeness</div>
+        <div class="metric-label">Completeness (Độ đầy đủ ý)</div>
         <div class="metric-value" style="color: var(--sb-green-accent);">0.663</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 66.3%; background: var(--sb-green-accent);"></div></div>
       </div>
       <div class="metric-card work">
-        <div class="metric-label">Overall Score</div>
+        <div class="metric-label">Overall Score (Điểm tổng thể)</div>
         <div class="metric-value" style="color: var(--sb-gold);">0.528</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 52.8%; background: var(--sb-gold);"></div></div>
       </div>
@@ -540,11 +541,11 @@
 
     <!-- Navigation Tabs Pill Bar -->
     <div class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('tab-overview')">Benchmark Overview</button>
-      <button class="tab-btn" onclick="switchTab('tab-dataset')">Golden Dataset (20 QA)</button>
-      <button class="tab-btn" onclick="switchTab('tab-playground')">Live RAG Evaluator & Reranker</button>
-      <button class="tab-btn" onclick="switchTab('tab-whys')">5 Whys Failure Analysis</button>
-      <button class="tab-btn" onclick="switchTab('tab-cicd')">CI/CD Quality Gate Simulator</button>
+      <button class="tab-btn active" onclick="switchTab('tab-overview')">Tổng Quan Benchmark</button>
+      <button class="tab-btn" onclick="switchTab('tab-dataset')">Bộ Đề Thi Chuẩn (20 QA)</button>
+      <button class="tab-btn" onclick="switchTab('tab-playground')">Chấm Điểm RAG Trực Tiếp</button>
+      <button class="tab-btn" onclick="switchTab('tab-whys')">Phân Tích Lỗi 5 Whys</button>
+      <button class="tab-btn" onclick="switchTab('tab-cicd')">Mô Phỏng Cửa An Ninh CI/CD</button>
     </div>
 
     <!-- TAB 1: OVERVIEW -->
@@ -554,7 +555,7 @@
         <!-- House Green Feature Band -->
         <div class="feature-band">
           <div class="panel-header">
-            <h2 class="panel-title">Diagnostic Comparison: Retrieval vs Generation</h2>
+            <h2 class="panel-title">So Sánh Chẩn Đoán: Retrieval vs Generation</h2>
           </div>
           <div style="padding: 20px 0; text-align: center;">
             <svg viewBox="0 0 500 220" width="100%" height="220">
@@ -581,29 +582,29 @@
             </svg>
           </div>
           <div style="background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 10px; font-size: 14px; line-height: 1.6;">
-            <strong>Key Diagnostic Insight:</strong> Bộ truy xuất BM25 đạt kết quả xuất sắc (Context Recall 82%, Context Precision 89.6%), chứng minh thông tin bằng chứng được tìm thấy đầy đủ từ 10 tài liệu nguồn. Completeness đạt 66.3% cho thấy các thông tin chính đã được phản ánh trong câu trả lời.
+            <strong>Thông Tin Chẩn Đoán Cốt Lõi:</strong> Bộ truy xuất BM25 đạt kết quả xuất sắc (Context Recall 82%, Context Precision 89.6%), chứng minh thông tin bằng chứng được tìm thấy đầy đủ từ 10 tài liệu nguồn. Completeness đạt 66.3% cho thấy các thông tin chính đã được phản ánh trong câu trả lời.
           </div>
         </div>
 
         <div class="panel-card">
           <div class="panel-header">
-            <h2 class="panel-title">Failure Taxonomy</h2>
+            <h2 class="panel-title">Phân Loại Các Loại Lỗi</h2>
           </div>
           <ul style="list-style: none; font-size: 14px;">
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>Hallucination</span>
+              <span>Bị Bịa Đặt (Hallucination)</span>
               <strong style="color: var(--sb-danger);">4 cases (20%)</strong>
             </li>
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>Irrelevant</span>
+              <span>Không Liên Quan (Irrelevant)</span>
               <strong style="color: var(--sb-gold);">5 cases (25%)</strong>
             </li>
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>Off-Topic</span>
+              <span>Lạc Đề (Off-Topic)</span>
               <strong style="color: #3b82f6;">5 cases (25%)</strong>
             </li>
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>Passed Cases</span>
+              <span>Số Câu Đạt Chuẩn (Passed)</span>
               <strong style="color: var(--sb-green-accent);">6 cases (30%)</strong>
             </li>
           </ul>
@@ -616,13 +617,13 @@
     <div id="tab-dataset" class="tab-content">
       <div class="panel-card">
         <div class="panel-header">
-          <h2 class="panel-title">Golden Dataset Explorer (20 Test Cases)</h2>
+          <h2 class="panel-title">Trình Khám Phá Bộ Đề Thi Chuẩn (20 Câu Hỏi)</h2>
           <div style="display: flex; gap: 8px;">
-            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('all')">All (20)</button>
-            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('easy')">Easy (5)</button>
-            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('medium')">Medium (7)</button>
-            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('hard')">Hard (5)</button>
-            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('adversarial')">Adversarial (3)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('all')">Tất cả (20)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('easy')">Dễ (5)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('medium')">Trung bình (7)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('hard')">Khó (5)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('adversarial')">Tấn công (3)</button>
           </div>
         </div>
         <div style="max-height: 480px; overflow-y: auto;">
@@ -630,10 +631,10 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Difficulty</th>
-                <th>Question</th>
-                <th>Expected Answer</th>
-                <th>Source Documents</th>
+                <th>Độ Khó</th>
+                <th>Câu Hỏi</th>
+                <th>Đáp Án Tham Chiếu Chuẩn</th>
+                <th>Tài Liệu Nguồn</th>
               </tr>
             </thead>
             <tbody id="dataset-body">
@@ -649,33 +650,33 @@
       <div class="dashboard-row">
         <div class="panel-card">
           <div class="panel-header">
-            <h2 class="panel-title">Live RAG Evaluator</h2>
+            <h2 class="panel-title">Chấm Điểm RAG Trực Tiếp</h2>
           </div>
           <div class="form-group">
-            <label class="form-label">Question</label>
+            <label class="form-label">Câu Hỏi (Question)</label>
             <input type="text" id="pg-question" class="form-input" value="When does the standard add/drop period end for Fall 2026?">
           </div>
           <div class="form-group">
-            <label class="form-label">Expected Reference Answer</label>
+            <label class="form-label">Đáp Án Tham Chiếu Chuẩn (Expected Answer)</label>
             <input type="text" id="pg-expected" class="form-input" value="For Fall 2026, the standard add/drop period ends at 17:00 on August 28.">
           </div>
           <div class="form-group">
-            <label class="form-label">Retrieved Context</label>
+            <label class="form-label">Ngữ Cảnh Truy Xuất Được (Retrieved Context)</label>
             <textarea id="pg-context" class="form-textarea">For Fall 2026, priority registration opens on July 20, regular registration closes on August 14, classes begin on August 17, and the standard add/drop period ends at 17:00 on August 28.</textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Actual Model Output Answer</label>
+            <label class="form-label">Câu Trả Lời Thực Tế Của AI (Actual Output Answer)</label>
             <textarea id="pg-actual" class="form-textarea">For Fall 2026, the standard add/drop period ends at 17:00 on August 28.</textarea>
           </div>
-          <button class="btn-pill" onclick="calculateLiveMetrics()">Calculate RAGAS Scores</button>
+          <button class="btn-pill" onclick="calculateLiveMetrics()">Tính Điểm RAGAS</button>
         </div>
 
         <div class="panel-card">
           <div class="panel-header">
-            <h2 class="panel-title">Evaluation Output</h2>
+            <h2 class="panel-title">Kết Quả Phân Tích</h2>
           </div>
           <div id="eval-results-box" class="code-box">
-            Click "Calculate RAGAS Scores" to view real-time Faithfulness, Relevance, and Completeness breakdown.
+            Nhấn nút "Tính Điểm RAGAS" để xem phân tích chi tiết chỉ số Faithfulness, Relevance và Completeness theo thời gian thực.
           </div>
         </div>
       </div>
@@ -685,32 +686,32 @@
     <div id="tab-whys" class="tab-content">
       <div class="panel-card">
         <div class="panel-header">
-          <h2 class="panel-title">Interactive 5 Whys Root Cause Analysis (Top Failure Cases)</h2>
+          <h2 class="panel-title">Phân Tích Nguyên Nhân Gốc Rễ 5 Whys (Case Điểm Thấp Nhất)</h2>
         </div>
         <div class="stepper">
           <div class="step-item">
-            <div class="step-title">Symptom</div>
-            <div class="step-text">Case M06: Overall Score = 0.210 (Lowest scoring case in benchmark).</div>
+            <div class="step-title">Hiện Tượng (Symptom)</div>
+            <div class="step-text">Case M06: Overall Score = 0.210 (Case đạt điểm thấp nhất trong toàn bộ tập test).</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 1 — Initial Cause</div>
+            <div class="step-title">Why 1 — Nguyên nhân ban đầu</div>
             <div class="step-text">Câu hỏi yêu cầu kết hợp cả điều kiện học tập (120 tín chỉ, GPA >= 2.00) và tài chính (clear financial holds).</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 2 — Retrieval Behavior</div>
+            <div class="step-title">Why 2 — Hành vi của Retriever</div>
             <div class="step-text">BM25 lấy top-k chunks nhưng xếp thứ tự thông tin tài chính xuống dưới thông tin điều kiện tín chỉ.</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 3 — Context Precision Impact</div>
+            <div class="step-title">Why 3 — Tác động tới Context Precision</div>
             <div class="step-text">Chunk chứa thông tin nợ phí nằm ở hạng 4 (AP@K bị giảm), dẫn đến generator ưu tiên trích xuất ý tín chỉ.</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 4 — Reranker Absence</div>
+            <div class="step-title">Why 4 — Thiếu hụt bộ Reranker</div>
             <div class="step-text">Hệ thống RAG chưa bật tính năng `rerank_by_overlap` để đưa chunk chứa từ khóa tài chính lên vị trí top-1.</div>
           </div>
           <div class="step-item" style="border-left-color: var(--sb-green-accent);">
-            <div class="step-title" style="color: var(--sb-green-accent);">Why 5 — Actionable Root Cause</div>
-            <div class="step-text"><strong>Fix Required:</strong> Kích hoạt bộ Reranker `rerank_by_overlap` trong pipeline truy xuất và dùng prompt Few-shot yêu cầu liệt kê đầy đủ 2 nhóm điều kiện.</div>
+            <div class="step-title" style="color: var(--sb-green-accent);">Why 5 — Nguyên Nhân Gốc Rễ Cần Xử Lý</div>
+            <div class="step-text"><strong>Phương Án Fix:</strong> Kích hoạt bộ Reranker `rerank_by_overlap` trong pipeline truy xuất và dùng prompt Few-shot yêu cầu liệt kê đầy đủ 2 nhóm điều kiện.</div>
           </div>
         </div>
       </div>
@@ -720,19 +721,19 @@
     <div id="tab-cicd" class="tab-content">
       <div class="panel-card">
         <div class="panel-header">
-          <h2 class="panel-title">CI/CD Quality Gate & Regression Simulator</h2>
+          <h2 class="panel-title">Mô Phỏng Cửa Kiểm Tra Tự Động CI/CD Quality Gate</h2>
         </div>
         <p style="color: var(--sb-text-black-soft); font-size: 14px; margin-bottom: 20px;">
           Mô phỏng quy trình kiểm tra tự động trước khi Deploy. Nếu bất kỳ chỉ số nào sụt giảm lớn hơn ngưỡng threshold 0.05, Quality Gate sẽ tự động <strong>Block Deployment</strong>!
         </p>
 
         <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px;">
-          <button class="btn-pill" onclick="runRegressionSim(true)">Simulate Stable Release (Pass)</button>
-          <button class="btn-pill btn-pill-secondary" onclick="runRegressionSim(false)" style="border-color: var(--sb-danger); color: var(--sb-danger);">Simulate Regression Release (Block)</button>
+          <button class="btn-pill" onclick="runRegressionSim(true)">Mô phỏng Bản Stable (Pass)</button>
+          <button class="btn-pill btn-pill-secondary" onclick="runRegressionSim(false)" style="border-color: var(--sb-danger); color: var(--sb-danger);">Mô phỏng Bản Regression (Block)</button>
         </div>
 
         <div id="cicd-output" class="code-box">
-          Click a button above to run CI/CD regression verification.
+          Nhấn nút phía trên để mô phỏng quy trình kiểm tra hồi quy CI/CD.
         </div>
       </div>
     </div>
@@ -740,7 +741,7 @@
   </div>
 
   <!-- Signature Floating Action Button -->
-  <button class="frap-btn" onclick="switchTab('tab-playground')" title="Quick Evaluator Playground">EVAL</button>
+  <button class="frap-btn" onclick="switchTab('tab-playground')" title="Chuyển sang Chấm điểm RAG">ĐÁNH GIÁ</button>
 
   <script>
     const datasetData = [
@@ -825,7 +826,7 @@ Answer Relevance:    ${r.toFixed(3)}  (${r >= 0.5 ? 'PASSED' : 'FAILED'})
 Completeness Score:  ${c.toFixed(3)}  (${c >= 0.5 ? 'PASSED' : 'FAILED'})
 ------------------------------------------
 Overall Mean Score:  ${overall}
-Status:              ${f >= 0.5 && r >= 0.5 && c >= 0.5 ? '[PASSED] QUALITY GATE' : '[FAILED] (Failure Type: ' + (f < 0.3 ? 'Hallucination' : 'Irrelevant') + ')'}`;
+Status:              ${f >= 0.5 && r >= 0.5 && c >= 0.5 ? '[PASSED] QUALITY GATE' : '[FAILED] (Failure Type: ' + (f < 0.3 ? 'Bị bịa đặt' : 'Không liên quan') + ')'}`;
     }
 
     function runRegressionSim(pass) {
