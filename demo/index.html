@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Evaluation & Benchmarking Pipeline — Starbucks Design Dashboard</title>
+  <title>AI Evaluation & Benchmarking Pipeline — Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -75,11 +75,6 @@
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .brand-title-group h1 span.star-badge {
-      color: var(--sb-gold);
-      font-size: 20px;
     }
 
     .brand-title-group p {
@@ -394,7 +389,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 14px;
+      font-weight: 700;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 100;
     }
@@ -494,11 +490,11 @@
   <!-- Header Bar -->
   <header class="sb-header">
     <div class="brand-title-group">
-      <h1><span class="star-badge">★</span> AI Evaluation & Benchmarking Dashboard</h1>
+      <h1>AI Evaluation & Benchmarking Dashboard</h1>
       <p>System: Northstar Student Services RAG | Corpus: 10 Documents | Golden Dataset: 20 Test Cases</p>
     </div>
     <div class="gold-rewards-badge">
-      <span>★</span> Pass Rate: 30.0% | 42/42 PASSED
+      Pass Rate: 30.0% | 42/42 PASSED
     </div>
   </header>
 
@@ -544,11 +540,11 @@
 
     <!-- Navigation Tabs Pill Bar -->
     <div class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('tab-overview')">📊 Benchmark Overview</button>
-      <button class="tab-btn" onclick="switchTab('tab-dataset')">🎯 Golden Dataset (20 QA)</button>
-      <button class="tab-btn" onclick="switchTab('tab-playground')">🔬 Live RAG Evaluator & Reranker</button>
-      <button class="tab-btn" onclick="switchTab('tab-whys')">🕵️ 5 Whys Failure Analysis</button>
-      <button class="tab-btn" onclick="switchTab('tab-cicd')">⚡ CI/CD Quality Gate Simulator</button>
+      <button class="tab-btn active" onclick="switchTab('tab-overview')">Benchmark Overview</button>
+      <button class="tab-btn" onclick="switchTab('tab-dataset')">Golden Dataset (20 QA)</button>
+      <button class="tab-btn" onclick="switchTab('tab-playground')">Live RAG Evaluator & Reranker</button>
+      <button class="tab-btn" onclick="switchTab('tab-whys')">5 Whys Failure Analysis</button>
+      <button class="tab-btn" onclick="switchTab('tab-cicd')">CI/CD Quality Gate Simulator</button>
     </div>
 
     <!-- TAB 1: OVERVIEW -->
@@ -585,7 +581,7 @@
             </svg>
           </div>
           <div style="background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 10px; font-size: 14px; line-height: 1.6;">
-            💡 <strong>Key Diagnostic Insight:</strong> Bộ truy xuất BM25 đạt kết quả xuất sắc (Context Recall 82%, Context Precision 89.6%), chứng minh thông tin bằng chứng được tìm thấy đầy đủ từ 10 tài liệu nguồn. Completeness đạt 66.3% cho thấy các thông tin chính đã được phản ánh trong câu trả lời.
+            <strong>Key Diagnostic Insight:</strong> Bộ truy xuất BM25 đạt kết quả xuất sắc (Context Recall 82%, Context Precision 89.6%), chứng minh thông tin bằng chứng được tìm thấy đầy đủ từ 10 tài liệu nguồn. Completeness đạt 66.3% cho thấy các thông tin chính đã được phản ánh trong câu trả lời.
           </div>
         </div>
 
@@ -595,19 +591,19 @@
           </div>
           <ul style="list-style: none; font-size: 14px;">
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>🚨 Hallucination</span>
+              <span>Hallucination</span>
               <strong style="color: var(--sb-danger);">4 cases (20%)</strong>
             </li>
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>⚠️ Irrelevant</span>
+              <span>Irrelevant</span>
               <strong style="color: var(--sb-gold);">5 cases (25%)</strong>
             </li>
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>ℹ️ Off-Topic</span>
+              <span>Off-Topic</span>
               <strong style="color: #3b82f6;">5 cases (25%)</strong>
             </li>
             <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
-              <span>✅ Passed Cases</span>
+              <span>Passed Cases</span>
               <strong style="color: var(--sb-green-accent);">6 cases (30%)</strong>
             </li>
           </ul>
@@ -743,8 +739,8 @@
 
   </div>
 
-  <!-- Signature Floating Frap Button (Starbucks Order Circle CTA) -->
-  <button class="frap-btn" onclick="switchTab('tab-playground')" title="Quick Evaluator Playground">⚡</button>
+  <!-- Signature Floating Action Button -->
+  <button class="frap-btn" onclick="switchTab('tab-playground')" title="Quick Evaluator Playground">EVAL</button>
 
   <script>
     const datasetData = [
@@ -829,30 +825,30 @@ Answer Relevance:    ${r.toFixed(3)}  (${r >= 0.5 ? 'PASSED' : 'FAILED'})
 Completeness Score:  ${c.toFixed(3)}  (${c >= 0.5 ? 'PASSED' : 'FAILED'})
 ------------------------------------------
 Overall Mean Score:  ${overall}
-Status:              ${f >= 0.5 && r >= 0.5 && c >= 0.5 ? '✅ PASSED QUALITY GATE' : '❌ FAILED (Failure Type: ' + (f < 0.3 ? 'Hallucination' : 'Irrelevant') + ')'}`;
+Status:              ${f >= 0.5 && r >= 0.5 && c >= 0.5 ? '[PASSED] QUALITY GATE' : '[FAILED] (Failure Type: ' + (f < 0.3 ? 'Hallucination' : 'Irrelevant') + ')'}`;
     }
 
     function runRegressionSim(pass) {
       const box = document.getElementById('cicd-output');
       if (pass) {
         box.innerHTML = 
-`🚀 Running Benchmark Regression Quality Gate...
+`[RUNNING] Benchmark Regression Quality Gate...
 Baseline Scores: Faithfulness=0.850, Relevance=0.820, Completeness=0.800
 Current PR Scores: Faithfulness=0.840, Relevance=0.815, Completeness=0.795
 Max Metric Drop:   0.010 (Threshold limit: 0.050)
 Regressions:       None
 ==================================================
-RESULT: ✅ QUALITY GATE PASSED -> Triggering Production Auto-Deploy!`;
+RESULT: [PASSED] QUALITY GATE PASSED -> Triggering Production Auto-Deploy!`;
         box.style.borderColor = 'var(--sb-green-accent)';
       } else {
         box.innerHTML = 
-`🚨 Running Benchmark Regression Quality Gate...
+`[RUNNING] Benchmark Regression Quality Gate...
 Baseline Scores: Faithfulness=0.850, Relevance=0.820, Completeness=0.800
 Current PR Scores: Faithfulness=0.680, Relevance=0.810, Completeness=0.790
 Max Metric Drop:   0.170 (Faithfulness dropped > 0.050)
 Regressions:       ['faithfulness']
 ==================================================
-RESULT: ❌ QUALITY GATE FAILED -> Blocked Deployment! Build Status: FAILED`;
+RESULT: [FAILED] QUALITY GATE FAILED -> Blocked Deployment! Build Status: FAILED`;
         box.style.borderColor = 'var(--sb-danger)';
       }
     }
