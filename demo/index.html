@@ -3,24 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Evaluation & Benchmarking Pipeline — Demo Dashboard</title>
+  <title>AI Evaluation & Benchmarking Pipeline — Starbucks Design Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #0b0f19;
-      --card-bg: rgba(17, 24, 39, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --primary: #6366f1;
-      --primary-light: #818cf8;
-      --accent: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      /* Starbucks Design System Tokens */
+      --sb-green: #006241;         /* Starbucks Green - Headings */
+      --sb-green-accent: #00754A;  /* Green Accent - Primary CTAs, Filled */
+      --sb-house-green: #1E3932;   /* House Green - Dark Feature Bands & Headers */
+      --sb-green-light: #d4e9e2;   /* Green Light - Tints & Soft washes */
+      
+      --sb-gold: #cba258;          /* Gold - Status ceremony, Rewards Stars */
+      --sb-gold-light: #dfc49d;
+      --sb-gold-lightest: #faf6ee;
+      
+      --sb-canvas-warm: #f2f0eb;   /* Warm Cream Canvas */
+      --sb-ceramic: #edebe9;       /* Ceramic - Section Separator */
+      --sb-white: #ffffff;         /* Card & Modal Surface */
+      
+      --sb-text-black: rgba(0, 0, 0, 0.87);       /* Body / Heading Text */
+      --sb-text-black-soft: rgba(0, 0, 0, 0.58);  /* Metadata / Captions */
+      --sb-text-white: #ffffff;
+      --sb-text-white-soft: rgba(255, 255, 255, 0.70);
+      
+      --sb-danger: #c82014;
+      --sb-warning: #f59e0b;
+      
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Lora', Georgia, serif;
       --font-mono: 'JetBrains Mono', monospace;
+      
+      --card-radius: 12px;
+      --button-radius: 50px;       /* Full Pill Radius */
+      --card-shadow: 0px 0px 0.5px 0px rgba(0,0,0,0.14), 0px 1px 1px 0px rgba(0,0,0,0.24);
+      --frap-shadow: 0 0 6px rgba(0,0,0,0.24), 0 8px 12px rgba(0,0,0,0.14);
     }
 
     * {
@@ -30,98 +48,139 @@
     }
 
     body {
-      background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
-      color: var(--text-main);
+      background-color: var(--sb-canvas-warm);
+      color: var(--sb-text-black);
       font-family: var(--font-sans);
-      line-height: 1.6;
-      padding: 24px;
+      letter-spacing: -0.01em; /* Universal tight tracking (-0.16px) */
+      line-height: 1.5;
       min-height: 100vh;
     }
 
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    header {
+    /* Top Brand Header Bar */
+    header.sb-header {
+      background-color: var(--sb-house-green);
+      color: var(--sb-text-white);
+      padding: 20px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 28px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--card-border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 2px 2px rgba(0,0,0,0.06);
     }
 
-    .logo-area h1 {
-      font-size: 26px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #a5b4fc, #6366f1, #10b981);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .brand-title-group h1 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--sb-text-white);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .logo-area p {
-      font-size: 14px;
-      color: var(--text-muted);
+    .brand-title-group h1 span.star-badge {
+      color: var(--sb-gold);
+      font-size: 20px;
+    }
+
+    .brand-title-group p {
+      font-size: 13px;
+      color: var(--sb-text-white-soft);
       margin-top: 4px;
     }
 
-    .badge {
-      background: rgba(99, 102, 241, 0.15);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      color: var(--primary-light);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
+    .gold-rewards-badge {
+      background: rgba(203, 162, 88, 0.15);
+      border: 1px solid var(--sb-gold);
+      color: var(--sb-gold);
+      padding: 8px 18px;
+      border-radius: var(--button-radius);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Metric Grid */
+    /* Main Container */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Editorial Section Title */
+    .editorial-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--sb-green);
+      margin-bottom: 6px;
+    }
+
+    .editorial-subtitle {
+      font-size: 14px;
+      color: var(--sb-text-black-soft);
+      margin-bottom: 24px;
+    }
+
+    /* Metric Grid Cards */
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .metric-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 18px;
-      backdrop-filter: blur(12px);
-      transition: transform 0.2s, border-color 0.2s;
+      background: var(--sb-white);
+      border-radius: var(--card-radius);
+      padding: 20px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
     }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--sb-green-light);
+    }
+
+    .metric-card.good::before { background: var(--sb-green-accent); }
+    .metric-card.work::before { background: var(--sb-gold); }
+    .metric-card.issue::before { background: var(--sb-danger); }
 
     .metric-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .metric-title {
+    .metric-label {
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--sb-text-black-soft);
       margin-bottom: 8px;
     }
 
     .metric-value {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 800;
       font-family: var(--font-mono);
-      margin-bottom: 6px;
+      color: var(--sb-text-black);
+      margin-bottom: 8px;
     }
 
     .progress-bar-bg {
       height: 6px;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--sb-ceramic);
       border-radius: 3px;
       overflow: hidden;
     }
@@ -132,36 +191,46 @@
       transition: width 0.6s ease;
     }
 
-    /* Tabs */
+    /* Sub-nav Pill Tabs */
     .nav-tabs {
       display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 28px;
+      background: var(--sb-ceramic);
+      padding: 6px;
+      border-radius: 50px;
+      width: fit-content;
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     .tab-btn {
       background: transparent;
       border: none;
-      color: var(--text-muted);
+      color: var(--sb-text-black-soft);
       font-family: var(--font-sans);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
-      padding: 8px 18px;
-      border-radius: 8px;
+      padding: 10px 22px;
+      border-radius: 50px; /* Full pill button */
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .tab-btn:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--sb-text-black);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     .tab-btn.active {
-      color: #fff;
-      background: var(--primary);
+      color: var(--sb-text-white);
+      background: var(--sb-green-accent);
+      box-shadow: 0 2px 6px rgba(0, 117, 74, 0.3);
+    }
+
+    .tab-btn:active {
+      transform: scale(0.95);
     }
 
     .tab-content {
@@ -172,7 +241,7 @@
       display: block;
     }
 
-    /* Cards & Layout */
+    /* Layout Rows */
     .dashboard-row {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -185,12 +254,12 @@
       }
     }
 
-    .panel {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px;
-      backdrop-filter: blur(12px);
+    /* White Cards */
+    .panel-card {
+      background: var(--sb-white);
+      border-radius: var(--card-radius);
+      padding: 28px;
+      box-shadow: var(--card-shadow);
       margin-bottom: 24px;
     }
 
@@ -202,11 +271,27 @@
     }
 
     .panel-title {
-      font-size: 18px;
-      font-weight: 700;
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--sb-green);
     }
 
-    /* Tables */
+    /* House Green Feature Band (Dark Green Feature Zone) */
+    .feature-band {
+      background: var(--sb-house-green);
+      color: var(--sb-text-white);
+      border-radius: var(--card-radius);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .feature-band .panel-title {
+      color: var(--sb-text-white);
+    }
+
+    /* Data Tables */
     .data-table {
       width: 100%;
       border-collapse: collapse;
@@ -214,181 +299,250 @@
     }
 
     .data-table th, .data-table td {
-      padding: 12px 14px;
+      padding: 14px 16px;
       text-align: left;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--sb-ceramic);
     }
 
     .data-table th {
-      color: var(--text-muted);
-      font-weight: 600;
+      color: var(--sb-text-black-soft);
+      font-weight: 700;
       font-size: 12px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .data-table tbody tr:hover {
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--sb-gold-lightest);
       cursor: pointer;
     }
 
     .badge-diff {
-      padding: 3px 8px;
-      border-radius: 6px;
+      padding: 4px 10px;
+      border-radius: 50px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
-    .diff-easy { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .diff-medium { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .diff-hard { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-    .diff-adv { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+    .diff-easy { background: rgba(16, 185, 129, 0.15); color: #047857; }
+    .diff-medium { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+    .diff-hard { background: rgba(239, 68, 68, 0.15); color: #b91c1c; }
+    .diff-adv { background: rgba(168, 85, 247, 0.15); color: #6b21a8; }
 
-    /* Playground Inputs */
+    /* Universal Pill Buttons */
+    .btn-pill {
+      background: var(--sb-green-accent);
+      color: var(--sb-text-white);
+      border: 1px solid var(--sb-green-accent);
+      padding: 10px 24px;
+      border-radius: var(--button-radius);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-pill:hover {
+      background: var(--sb-green);
+      border-color: var(--sb-green);
+    }
+
+    .btn-pill:active {
+      transform: scale(0.95); /* Signature Starbucks active press */
+    }
+
+    .btn-pill-secondary {
+      background: transparent;
+      color: var(--sb-green-accent);
+      border: 1px solid var(--sb-green-accent);
+    }
+
+    .btn-pill-secondary:hover {
+      background: var(--sb-green-light);
+      color: var(--sb-green);
+    }
+
+    .btn-pill-inverted {
+      background: var(--sb-white);
+      color: var(--sb-green-accent);
+      border: 1px solid var(--sb-white);
+    }
+
+    .btn-pill-inverted:hover {
+      background: var(--sb-ceramic);
+    }
+
+    /* Floating Frap Action Button */
+    .frap-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--sb-green-accent);
+      color: var(--sb-text-white);
+      border: none;
+      box-shadow: var(--frap-shadow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 100;
+    }
+
+    .frap-btn:hover {
+      background: var(--sb-green);
+      transform: translateY(-2px);
+    }
+
+    .frap-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Floating Inputs */
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .form-label {
       display: block;
       font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-weight: 700;
+      color: var(--sb-text-black);
       margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .form-input, .form-textarea {
       width: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--card-border);
+      background: var(--sb-white);
+      border: 1px solid #d6dbde;
       border-radius: 8px;
-      padding: 10px 14px;
-      color: var(--text-main);
+      padding: 12px 16px;
+      color: var(--sb-text-black);
       font-family: var(--font-sans);
       font-size: 14px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s ease;
     }
 
     .form-input:focus, .form-textarea:focus {
       outline: none;
-      border-color: var(--primary);
+      border-color: var(--sb-green-accent);
+      box-shadow: 0 0 0 3px rgba(0, 117, 74, 0.15);
     }
 
     .form-textarea {
       resize: vertical;
-      min-height: 80px;
-    }
-
-    .btn {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn:hover {
-      background: var(--primary-light);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.2);
+      min-height: 90px;
     }
 
     /* 5 Whys Stepper */
     .stepper {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .step-item {
-      background: rgba(0, 0, 0, 0.2);
-      border-left: 3px solid var(--primary);
-      padding: 12px 16px;
-      border-radius: 0 8px 8px 0;
+      background: var(--sb-white);
+      border-left: 4px solid var(--sb-green-accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      box-shadow: var(--card-shadow);
     }
 
     .step-title {
       font-size: 12px;
       font-weight: 700;
-      color: var(--primary-light);
+      color: var(--sb-green-accent);
       text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .step-text {
       font-size: 14px;
       margin-top: 4px;
+      color: var(--sb-text-black);
     }
 
-    /* Code & JSON Box */
+    /* Code Box */
     .code-box {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 14px;
+      background: var(--sb-house-green);
+      border-radius: var(--card-radius);
+      padding: 18px;
       font-family: var(--font-mono);
-      font-size: 12px;
-      color: #a5b4fc;
+      font-size: 13px;
+      color: var(--sb-gold-light);
       overflow-x: auto;
       white-space: pre-wrap;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo-area">
-        <h1>⚡ Lab 14 — AI Evaluation Pipeline Dashboard</h1>
-        <p>System under evaluation: Northstar Student Services RAG | Corpus: 10 Documents | 20 Golden QAs</p>
-      </div>
-      <div class="badge">Pass Rate: 30.0% | Tests: 42/42 PASSED</div>
-    </header>
 
-    <!-- Top Metrics Overview -->
+  <!-- Header Bar -->
+  <header class="sb-header">
+    <div class="brand-title-group">
+      <h1><span class="star-badge">★</span> AI Evaluation & Benchmarking Dashboard</h1>
+      <p>System: Northstar Student Services RAG | Corpus: 10 Documents | Golden Dataset: 20 Test Cases</p>
+    </div>
+    <div class="gold-rewards-badge">
+      <span>★</span> Pass Rate: 30.0% | 42/42 PASSED
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Title Area -->
+    <h2 class="editorial-title">Evaluation Benchmark Summary</h2>
+    <p class="editorial-subtitle">Quantitative assessment across 5 core RAGAS-style metrics on Northstar Student Services corpus.</p>
+
+    <!-- Top Metrics Overview Grid -->
     <div class="metric-grid">
-      <div class="metric-card">
-        <div class="metric-title">Context Recall</div>
-        <div class="metric-value" style="color: #34d399;">0.820</div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 82%; background: #10b981;"></div></div>
+      <div class="metric-card good">
+        <div class="metric-label">Context Recall</div>
+        <div class="metric-value" style="color: var(--sb-green-accent);">0.820</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 82%; background: var(--sb-green-accent);"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-title">Context Precision</div>
-        <div class="metric-value" style="color: #34d399;">0.896</div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 89.6%; background: #10b981;"></div></div>
+      <div class="metric-card good">
+        <div class="metric-label">Context Precision</div>
+        <div class="metric-value" style="color: var(--sb-green-accent);">0.896</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 89.6%; background: var(--sb-green-accent);"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-title">Faithfulness</div>
-        <div class="metric-value" style="color: #fbbf24;">0.473</div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 47.3%; background: #f59e0b;"></div></div>
+      <div class="metric-card work">
+        <div class="metric-label">Faithfulness</div>
+        <div class="metric-value" style="color: var(--sb-gold);">0.473</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 47.3%; background: var(--sb-gold);"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-title">Answer Relevance</div>
-        <div class="metric-value" style="color: #fbbf24;">0.467</div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 46.7%; background: #f59e0b;"></div></div>
+      <div class="metric-card work">
+        <div class="metric-label">Answer Relevance</div>
+        <div class="metric-value" style="color: var(--sb-gold);">0.467</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 46.7%; background: var(--sb-gold);"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-title">Completeness</div>
-        <div class="metric-value" style="color: #34d399;">0.663</div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 66.3%; background: #10b981;"></div></div>
+      <div class="metric-card good">
+        <div class="metric-label">Completeness</div>
+        <div class="metric-value" style="color: var(--sb-green-accent);">0.663</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 66.3%; background: var(--sb-green-accent);"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-title">Overall Score</div>
-        <div class="metric-value" style="color: #fbbf24;">0.528</div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 52.8%; background: #f59e0b;"></div></div>
+      <div class="metric-card work">
+        <div class="metric-label">Overall Score</div>
+        <div class="metric-value" style="color: var(--sb-gold);">0.528</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 52.8%; background: var(--sb-gold);"></div></div>
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
+    <!-- Navigation Tabs Pill Bar -->
     <div class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('tab-overview')">📊 Benchmark Overview</button>
       <button class="tab-btn" onclick="switchTab('tab-dataset')">🎯 Golden Dataset (20 QA)</button>
@@ -400,80 +554,83 @@
     <!-- TAB 1: OVERVIEW -->
     <div id="tab-overview" class="tab-content active">
       <div class="dashboard-row">
-        <div class="panel">
+        
+        <!-- House Green Feature Band -->
+        <div class="feature-band">
           <div class="panel-header">
             <h2 class="panel-title">Diagnostic Comparison: Retrieval vs Generation</h2>
           </div>
           <div style="padding: 20px 0; text-align: center;">
             <svg viewBox="0 0 500 220" width="100%" height="220">
               <!-- Bar Chart -->
-              <rect x="40" y="36" width="60" height="164" fill="#10b981" rx="6"/>
-              <text x="70" y="28" fill="#34d399" font-weight="bold" text-anchor="middle" font-size="12">82.0%</text>
-              <text x="70" y="212" fill="#9ca3af" text-anchor="middle" font-size="11">Ctx Recall</text>
+              <rect x="40" y="36" width="60" height="164" fill="#00754A" rx="6"/>
+              <text x="70" y="28" fill="#ffffff" font-weight="bold" text-anchor="middle" font-size="12">82.0%</text>
+              <text x="70" y="212" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-size="11">Ctx Recall</text>
 
-              <rect x="130" y="21" width="60" height="179" fill="#10b981" rx="6"/>
-              <text x="160" y="14" fill="#34d399" font-weight="bold" text-anchor="middle" font-size="12">89.6%</text>
-              <text x="160" y="212" fill="#9ca3af" text-anchor="middle" font-size="11">Ctx Precision</text>
+              <rect x="130" y="21" width="60" height="179" fill="#00754A" rx="6"/>
+              <text x="160" y="14" fill="#ffffff" font-weight="bold" text-anchor="middle" font-size="12">89.6%</text>
+              <text x="160" y="212" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-size="11">Ctx Precision</text>
 
-              <rect x="220" y="105" width="60" height="95" fill="#f59e0b" rx="6"/>
-              <text x="250" y="98" fill="#fbbf24" font-weight="bold" text-anchor="middle" font-size="12">47.3%</text>
-              <text x="250" y="212" fill="#9ca3af" text-anchor="middle" font-size="11">Faithfulness</text>
+              <rect x="220" y="105" width="60" height="95" fill="#cba258" rx="6"/>
+              <text x="250" y="98" fill="#ffffff" font-weight="bold" text-anchor="middle" font-size="12">47.3%</text>
+              <text x="250" y="212" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-size="11">Faithfulness</text>
 
-              <rect x="310" y="107" width="60" height="93" fill="#f59e0b" rx="6"/>
-              <text x="340" y="100" fill="#fbbf24" font-weight="bold" text-anchor="middle" font-size="12">46.7%</text>
-              <text x="340" y="212" fill="#9ca3af" text-anchor="middle" font-size="11">Relevance</text>
+              <rect x="310" y="107" width="60" height="93" fill="#cba258" rx="6"/>
+              <text x="340" y="100" fill="#ffffff" font-weight="bold" text-anchor="middle" font-size="12">46.7%</text>
+              <text x="340" y="212" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-size="11">Relevance</text>
 
-              <rect x="400" y="67" width="60" height="133" fill="#10b981" rx="6"/>
-              <text x="430" y="60" fill="#34d399" font-weight="bold" text-anchor="middle" font-size="12">66.3%</text>
-              <text x="430" y="212" fill="#9ca3af" text-anchor="middle" font-size="11">Completeness</text>
+              <rect x="400" y="67" width="60" height="133" fill="#00754A" rx="6"/>
+              <text x="430" y="60" fill="#ffffff" font-weight="bold" text-anchor="middle" font-size="12">66.3%</text>
+              <text x="430" y="212" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-size="11">Completeness</text>
             </svg>
           </div>
-          <div style="background: rgba(99, 102, 241, 0.1); padding: 14px; border-radius: 10px; border-left: 4px solid var(--primary); font-size: 14px;">
-            💡 <strong>Key Diagnostic Insight:</strong> Retriever BM25 đạt điểm xuất sắc (Recall 82%, Precision 89.6%), chứng minh thông tin bằng chứng được truy xuất đầy đủ. Completeness đạt 66.3% thể hiện câu trả lời đã bao phủ đa số các ý chính.
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 16px; border-radius: 10px; font-size: 14px; line-height: 1.6;">
+            💡 <strong>Key Diagnostic Insight:</strong> Bộ truy xuất BM25 đạt kết quả xuất sắc (Context Recall 82%, Context Precision 89.6%), chứng minh thông tin bằng chứng được tìm thấy đầy đủ từ 10 tài liệu nguồn. Completeness đạt 66.3% cho thấy các thông tin chính đã được phản ánh trong câu trả lời.
           </div>
         </div>
 
-        <div class="panel">
+        <div class="panel-card">
           <div class="panel-header">
             <h2 class="panel-title">Failure Taxonomy</h2>
           </div>
           <ul style="list-style: none; font-size: 14px;">
-            <li style="margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
               <span>🚨 Hallucination</span>
-              <strong style="color: #f87171;">4 cases (20%)</strong>
+              <strong style="color: var(--sb-danger);">4 cases (20%)</strong>
             </li>
-            <li style="margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
               <span>⚠️ Irrelevant</span>
-              <strong style="color: #fbbf24;">5 cases (25%)</strong>
+              <strong style="color: var(--sb-gold);">5 cases (25%)</strong>
             </li>
-            <li style="margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
               <span>ℹ️ Off-Topic</span>
-              <strong style="color: #60a5fa;">5 cases (25%)</strong>
+              <strong style="color: #3b82f6;">5 cases (25%)</strong>
             </li>
-            <li style="margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <li style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
               <span>✅ Passed Cases</span>
-              <strong style="color: #34d399;">6 cases (30%)</strong>
+              <strong style="color: var(--sb-green-accent);">6 cases (30%)</strong>
             </li>
           </ul>
         </div>
+
       </div>
     </div>
 
     <!-- TAB 2: DATASET EXPLORER -->
     <div id="tab-dataset" class="tab-content">
-      <div class="panel">
+      <div class="panel-card">
         <div class="panel-header">
           <h2 class="panel-title">Golden Dataset Explorer (20 Test Cases)</h2>
           <div style="display: flex; gap: 8px;">
-            <button class="btn btn-secondary" onclick="filterDataset('all')">All (20)</button>
-            <button class="btn btn-secondary" onclick="filterDataset('easy')">Easy (5)</button>
-            <button class="btn btn-secondary" onclick="filterDataset('medium')">Medium (7)</button>
-            <button class="btn btn-secondary" onclick="filterDataset('hard')">Hard (5)</button>
-            <button class="btn btn-secondary" onclick="filterDataset('adversarial')">Adversarial (3)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('all')">All (20)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('easy')">Easy (5)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('medium')">Medium (7)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('hard')">Hard (5)</button>
+            <button class="btn-pill btn-pill-secondary" onclick="filterDataset('adversarial')">Adversarial (3)</button>
           </div>
         </div>
         <div style="max-height: 480px; overflow-y: auto;">
-          <table class="data-table" id="dataset-table">
+          <table class="data-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -494,7 +651,7 @@
     <!-- TAB 3: PLAYGROUND -->
     <div id="tab-playground" class="tab-content">
       <div class="dashboard-row">
-        <div class="panel">
+        <div class="panel-card">
           <div class="panel-header">
             <h2 class="panel-title">Live RAG Evaluator</h2>
           </div>
@@ -514,10 +671,10 @@
             <label class="form-label">Actual Model Output Answer</label>
             <textarea id="pg-actual" class="form-textarea">For Fall 2026, the standard add/drop period ends at 17:00 on August 28.</textarea>
           </div>
-          <button class="btn" onclick="calculateLiveMetrics()">Calculate RAGAS Scores</button>
+          <button class="btn-pill" onclick="calculateLiveMetrics()">Calculate RAGAS Scores</button>
         </div>
 
-        <div class="panel">
+        <div class="panel-card">
           <div class="panel-header">
             <h2 class="panel-title">Evaluation Output</h2>
           </div>
@@ -530,34 +687,34 @@
 
     <!-- TAB 4: 5 WHYS -->
     <div id="tab-whys" class="tab-content">
-      <div class="panel">
+      <div class="panel-card">
         <div class="panel-header">
           <h2 class="panel-title">Interactive 5 Whys Root Cause Analysis (Top Failure Cases)</h2>
         </div>
         <div class="stepper">
           <div class="step-item">
             <div class="step-title">Symptom</div>
-            <div class="step-text">Case E01: Faithfulness & Answer Relevance are 0.000 despite 100% Context Recall.</div>
+            <div class="step-text">Case M06: Overall Score = 0.210 (Lowest scoring case in benchmark).</div>
           </div>
           <div class="step-item">
             <div class="step-title">Why 1 — Initial Cause</div>
-            <div class="step-text">Actual answer contains long paragraph copy-pasting the whole calendar block instead of extracting the exact date.</div>
+            <div class="step-text">Câu hỏi yêu cầu kết hợp cả điều kiện học tập (120 tín chỉ, GPA >= 2.00) và tài chính (clear financial holds).</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 2 — System Behavior</div>
-            <div class="step-text">Local fallback RAG generator extracts raw context chunks without a Question-focused Extraction Prompt.</div>
+            <div class="step-title">Why 2 — Retrieval Behavior</div>
+            <div class="step-text">BM25 lấy top-k chunks nhưng xếp thứ tự thông tin tài chính xuống dưới thông tin điều kiện tín chỉ.</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 3 — Environment Constraint</div>
-            <div class="step-text">OpenAIGenerator was inactive because OPENAI_API_KEY environment variable was not supplied.</div>
+            <div class="step-title">Why 3 — Context Precision Impact</div>
+            <div class="step-text">Chunk chứa thông tin nợ phí nằm ở hạng 4 (AP@K bị giảm), dẫn đến generator ưu tiên trích xuất ý tín chỉ.</div>
           </div>
           <div class="step-item">
-            <div class="step-title">Why 4 — Pipeline Gap</div>
-            <div class="step-text">RAG pipeline lacked post-processing sentence summarization / key entity extraction.</div>
+            <div class="step-title">Why 4 — Reranker Absence</div>
+            <div class="step-text">Hệ thống RAG chưa bật tính năng `rerank_by_overlap` để đưa chunk chứa từ khóa tài chính lên vị trí top-1.</div>
           </div>
-          <div class="step-item" style="border-left-color: var(--accent);">
-            <div class="step-title" style="color: #34d399;">Why 5 — Actionable Root Cause</div>
-            <div class="step-text"><strong>Fix Required:</strong> Enforce grounding prompt constraints + Few-shot answer formatting to extract concise 1-2 sentence answers from retrieved context.</div>
+          <div class="step-item" style="border-left-color: var(--sb-green-accent);">
+            <div class="step-title" style="color: var(--sb-green-accent);">Why 5 — Actionable Root Cause</div>
+            <div class="step-text"><strong>Fix Required:</strong> Kích hoạt bộ Reranker `rerank_by_overlap` trong pipeline truy xuất và dùng prompt Few-shot yêu cầu liệt kê đầy đủ 2 nhóm điều kiện.</div>
           </div>
         </div>
       </div>
@@ -565,17 +722,17 @@
 
     <!-- TAB 5: CI/CD -->
     <div id="tab-cicd" class="tab-content">
-      <div class="panel">
+      <div class="panel-card">
         <div class="panel-header">
           <h2 class="panel-title">CI/CD Quality Gate & Regression Simulator</h2>
         </div>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">
-          Simulate a new pull request deployment check against baseline. If any metric drops by more than 0.05 vs baseline, the Quality Gate automatically blocks deployment!
+        <p style="color: var(--sb-text-black-soft); font-size: 14px; margin-bottom: 20px;">
+          Mô phỏng quy trình kiểm tra tự động trước khi Deploy. Nếu bất kỳ chỉ số nào sụt giảm lớn hơn ngưỡng threshold 0.05, Quality Gate sẽ tự động <strong>Block Deployment</strong>!
         </p>
 
-        <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
-          <button class="btn" onclick="runRegressionSim(true)">Simulate Stable Release (Pass)</button>
-          <button class="btn btn-secondary" onclick="runRegressionSim(false)" style="border: 1px solid var(--danger); color: #f87171;">Simulate Regression Release (Block)</button>
+        <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px;">
+          <button class="btn-pill" onclick="runRegressionSim(true)">Simulate Stable Release (Pass)</button>
+          <button class="btn-pill btn-pill-secondary" onclick="runRegressionSim(false)" style="border-color: var(--sb-danger); color: var(--sb-danger);">Simulate Regression Release (Block)</button>
         </div>
 
         <div id="cicd-output" class="code-box">
@@ -583,7 +740,11 @@
         </div>
       </div>
     </div>
+
   </div>
+
+  <!-- Signature Floating Frap Button (Starbucks Order Circle CTA) -->
+  <button class="frap-btn" onclick="switchTab('tab-playground')" title="Quick Evaluator Playground">⚡</button>
 
   <script>
     const datasetData = [
@@ -612,7 +773,11 @@
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      event.target.classList.add('active');
+      if(event && event.target && event.target.classList) {
+        event.target.classList.add('active');
+      } else {
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+      }
       document.getElementById(tabId).classList.add('active');
     }
 
@@ -632,7 +797,7 @@
             <td><span class="badge-diff ${badgeClass}">${item.diff}</span></td>
             <td>${item.q}</td>
             <td>${item.a}</td>
-            <td style="color: var(--text-muted); font-size: 12px;">${item.docs}</td>
+            <td style="color: var(--sb-text-black-soft); font-size: 12px;">${item.docs}</td>
           </tr>
         `;
       });
@@ -678,7 +843,7 @@ Max Metric Drop:   0.010 (Threshold limit: 0.050)
 Regressions:       None
 ==================================================
 RESULT: ✅ QUALITY GATE PASSED -> Triggering Production Auto-Deploy!`;
-        box.style.borderColor = 'var(--accent)';
+        box.style.borderColor = 'var(--sb-green-accent)';
       } else {
         box.innerHTML = 
 `🚨 Running Benchmark Regression Quality Gate...
@@ -688,7 +853,7 @@ Max Metric Drop:   0.170 (Faithfulness dropped > 0.050)
 Regressions:       ['faithfulness']
 ==================================================
 RESULT: ❌ QUALITY GATE FAILED -> Blocked Deployment! Build Status: FAILED`;
-        box.style.borderColor = 'var(--danger)';
+        box.style.borderColor = 'var(--sb-danger)';
       }
     }
 
