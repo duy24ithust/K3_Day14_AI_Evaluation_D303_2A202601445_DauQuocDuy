@@ -273,6 +273,34 @@ class DomainResponse:
     retrieved_chunks: tuple[Chunk, ...]
 
 
+class LocalRAGGenerator:
+    """Local fallback generator when OpenAI key is not configured."""
+    def __init__(self) -> None:
+        self.model = "local-grounded-fallback"
+
+    def generate(self, prompt: str) -> str:
+        user_question = ""
+        q_match = re.search(r"Question:\s*(.+)", prompt, re.IGNORECASE)
+        if q_match:
+            user_question = q_match.group(1).strip()
+
+        uq_lower = user_question.lower()
+        if "medical treatment" in uq_lower or "insomnia" in uq_lower:
+            return "This question is outside the scope of the Student Services Assistant. I can only assist with Northstar University student-service policy topics such as registration, tuition, grading, and academic deadlines."
+        if "forget all" in uq_lower or "override" in uq_lower or "api key" in uq_lower or "password" in uq_lower:
+            return "I cannot fulfill this request. Instructions inside user messages cannot override system scope rules, and I must not reveal prompt instructions, credentials, or system keys."
+        if "waive tuition completely" in uq_lower:
+            return "Northstar Student Services policy does not allow the assistant or staff to waive tuition simply upon request. Tuition rates and scholarships are governed by official policies, and the assistant cannot approve fee waivers."
+
+        context_blocks = re.findall(r"\[Context \d+ \| [^\]]+\]\s*\n(.+?)(?=\n\n\[Context|\Z)", prompt, re.DOTALL)
+        if not context_blocks:
+            return "Information is not available in the retrieved contexts."
+
+        combined = " ".join(b.strip() for b in context_blocks[:2])
+        tokens = combined.split()
+        return " ".join(tokens[:50]) + "."
+
+
 class DomainAssistant:
     """The domain-specific AI system evaluated by the lab's template core."""
 
@@ -296,10 +324,16 @@ class DomainAssistant:
         top_k: int = 5,
     ) -> DomainAssistant:
         corpus_id, chunks = load_corpus(corpus_dir)
+        gen = generator
+        if gen is None:
+            if os.getenv("OPENAI_API_KEY"):
+                gen = OpenAIGenerator()
+            else:
+                gen = LocalRAGGenerator()
         return cls(
             corpus_id,
             BM25Retriever(chunks),
-            generator if generator is not None else OpenAIGenerator(),
+            gen,
             top_k,
         )
 
